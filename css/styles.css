@@ -1,0 +1,63 @@
+dl{
+	width:300px;
+	float: left;
+	padding-bottom: 10px;
+}
+
+dt{
+	margin: 0 4px 0 0;
+	width: 146px;
+	display: block;
+	float: left;
+	text-align: right;
+}	
+
+dd{
+	margin: 0;
+	width: 150px;
+	display: block;
+	clear: right;
+	float: left;
+}
+
+p{
+	margin: 3px 0;
+}
+
+#container{
+	width: 100%;
+	font-size: 24px;
+	float: left;
+	clear: both;
+}
+
+#container div{
+	width: 33%;
+	float: left;
+	padding: 10px 0;
+}
+
+input[type='text']{
+	width: 30px;
+}
+
+.actions{
+	float: left;
+	clear: both;
+}
+
+@media print{
+	.actions, dl, p, h1{
+		display: none;
+	}
+
+	#container{
+		margin-top: 100px;
+	}
+}
+
+@media screen and (max-width:900px){
+	#container div{
+		width: 50%;
+	}
+}
