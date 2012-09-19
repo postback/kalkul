@@ -4,17 +4,20 @@ var app = {
 	table : [],
 	container : null,
 	columns : 3,
+	upto : 10,
 	init : function(){
 		this.prepare();
 
 		$('#generate').click(function(){
 			app.count = $('#count').val();
 			app.container.empty();
-			app.columns = $('#columns').val();
-			if(isNaN(app.columns) || app.columns < 0 || app.columns > 10){
-				app.columns = 3;
-				$('#columns').val(3);
-			}
+			
+			//Columns
+			app.columns = app.shouldBeBetweenOneAndTen($('#columns').val(),3);
+			$('#columns').val(app.columns);
+
+			app.upto = app.shouldBeBetweenOneAndTen($('#upto').val(),10);
+			$('#upto').val(app.upto);
 
 			var selection = app.generate();
 			app.render(selection);
@@ -55,11 +58,23 @@ var app = {
 	},
 	generate : function(){
 		var clone = this.table.slice(0);
+
+		if(app.upto < 10){
+			for (var i = clone.length-1; i >= 0; i--) {
+				if(clone[i].left > app.upto){
+					app.removeItem(clone,clone[i]);
+				}
+			}
+		}
+
 		var selection = [];
 		for (var i = 0, index; i < app.count; ++i) {
+			if(clone.length <= 0){
+				break;//No more candidates left
+			}
 			index = Math.floor(Math.random() * clone.length);
 			selection.push(clone[index]);
-			clone[index] = clone.pop();
+			app.removeItem(clone,clone[index]);
 		}
 		return selection;
 	},
@@ -103,6 +118,20 @@ var app = {
 		}
 
 		$(output).appendTo(this.container);
+	},
+	shouldBeBetweenOneAndTen : function(value,defaultValue){
+		if(isNaN(value) || value < 0 || value > 10){
+			value = defaultValue;
+		}
+		return value;
+	},
+	removeItem : function(array, item){
+		for(var i in array){
+			if(array[i]==item){
+				array.splice(i,1);
+				break;
+			}
+		}
 	}
 }
 
