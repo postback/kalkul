@@ -3,12 +3,19 @@ var app = {
 	count : 30,//The number of exercises generated, default
 	table : [],
 	container : null,
+	columns : 3,
 	init : function(){
 		this.prepare();
 
 		$('#generate').click(function(){
 			app.count = $('#count').val();
 			app.container.empty();
+			app.columns = $('#columns').val();
+			if(isNaN(app.columns) || app.columns < 0 || app.columns > 10){
+				app.columns = 3;
+				$('#columns').val(3);
+			}
+
 			var selection = app.generate();
 			app.render(selection);
 		});
@@ -76,7 +83,9 @@ var app = {
 
 		for(var i in selection){
 			var item = selection[i];
-			output += '<div data-solution="';
+			output += '<div';
+			output += ' class="columns-' + app.columns + '"';
+			output += ' data-solution="';
 			if(showAs == 'division'){
 				output += item.left + '">';
 				output += item.solution + ' : ' + item.right + ' = ' + '<span style="display:none;" class="solution">' + item.left + '</span>';
