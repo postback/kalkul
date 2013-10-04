@@ -1,32 +1,97 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>KalKul: Multiplication &amp; Division exercises</title>
-	<script type="text/javascript" src="js/jquery.1.10.2.min.js"></script>
-	<script type="text/javascript" src="js/app.js"></script>
-	<link type="text/css" href="css/app.css" rel="stylesheet"></style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KalKul: Multiplication &amp; Division exercises</title>
+  <script type="text/javascript" src="js/jquery.1.10.2.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+  <link type="text/css" href="css/bootstrap.min.css" rel="stylesheet"></style>
+  <link type="text/css" href="css/app.css" rel="stylesheet"></style>
 </head>
 <body>
-	<h1>Simple exercise generator (division &amp; multiplication up to 100)</h1>
-	<p>What do you need?</p>
-	<dl>
-		<dt><label for="multiplication">Multiplications (x)</label></dt>
-		<dd><input type="checkbox" id="multiplication"></dd>
-		<dt><label for="division">Divisions (:)</label></dt>
-		<dd><input type="checkbox" id="division"></dd>
-		<dt><label for="count">Number of exercises</label></dt>
-		<dd><input type="text" id="count" value="30"></dd>
-		<dt><label for="columns">Number of columns</label></dt>
-		<dd><input type="text" id="columns" value="3"></dd>
-		<dt><label for="upto">Maximum to divide by or multiply by</label></dt>
-		<dd><input type="text" id="upto" value="10"></dd>
-	</dl>
-	<div class="actions">
-		<input type="button" value="Generate" id="generate"/>
-		<input type="button" value="Print" id="print"/>
-		<input type="button" value="Show solutions" id="solutions"/>
-	</div>
-	<div id="container"></div>
+  <header class="nav navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" data-toggle="collapse" data-target=".navbar-ex1-collapse" class="navbar-toggle">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="#" class="navbar-brand">KalKul</a>
+      </div>
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <p class="navbar-text">Simple exercise generator (division &amp; multiplication up to 100)</p>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class"row">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-6 form form-horizontal">
+            <h3>Printable</h3>
+            <div class="form-group">
+              <div class="col-lg-offset-4 col-lg-8">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" id="multiplication"> Multiplications (x)
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-offset-4 col-lg-8">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" id="division"> Divisions (:)
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="count" class="col-lg-4 control-label">Number of exercises</label>
+              <div class="col-lg-8">
+                <input type="text" id="count" value="30" class="form-control">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="columns" class="col-lg-4 control-label">Number of columns</label>
+              <div class="col-lg-8">
+                <select id="columns" class="form-control">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3" selected="selected">3</option>
+                  <option value="4">4</option>
+                  <option value="6">6</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="upto" class="col-lg-4 control-label">Maximum to divide by or multiply by</label>
+              <div class="col-lg-8">
+                <input type="text" id="upto" value="10" class="form-control">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-offset-4 col-lg-8">
+                <button id="generate" class="btn btn-primary">Generate</button>
+                <button id="print" class="btn">Print</button>
+                <button id="solutions" class="btn">Show solutions</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            
+          </div>
+        </div>
+        
+        <div id="container">
+          <!-- Results will be printed here -->
+        </div>
+
+      </div>
+    </div>
+  </div>
 </body>
 </html>

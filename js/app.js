@@ -99,7 +99,7 @@ var app = {
 		for(var i in selection){
 			var item = selection[i];
 			output += '<div';
-			output += ' class="columns-' + app.columns + '"';
+			output += ' class="col-md-' + (12/app.columns) + '"';
 			output += ' data-solution="';
 			if(showAs == 'division'){
 				output += item.left + '">';
