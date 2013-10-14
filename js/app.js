@@ -5,6 +5,7 @@ var app = {
 	container : null,
 	columns : 3,
 	upto : 10,
+	timetrial : false,
 	init : function(){
 		this.prepare();
 
@@ -37,6 +38,11 @@ var app = {
 				button.val('Show solutions');
 			}
 		});
+
+		$('#start').click(function(e){
+			var selection = app.generate();
+			app.timetrial(selection);
+		});
 	},
 	prepare : function(){
 		var left = 1;
@@ -57,24 +63,26 @@ var app = {
 		this.container = $('#container');
 	},
 	generate : function(){
-		var clone = this.table.slice(0);
+		var filtered = [];
+		var tableof = $('#tableof').val();
 
-		if(app.upto < 10){
-			for (var i = clone.length-1; i >= 0; i--) {
-				if(clone[i].left > app.upto){
-					app.removeItem(clone,clone[i]);
+		if($('#tableof').val() != 0){
+			for (var i = this.table.length-1; i >= 0; i--) {
+				var left = this.table[i].left.toString();
+				if($.inArray(left,tableof) > -1){
+					filtered.push(this.table[i]);
 				}
 			}
 		}
 
 		var selection = [];
 		for (var i = 0, index; i < app.count; ++i) {
-			if(clone.length <= 0){
+			if(filtered.length <= 0){
 				break;//No more candidates left
 			}
-			index = Math.floor(Math.random() * clone.length);
-			selection.push(clone[index]);
-			app.removeItem(clone,clone[index]);
+			index = Math.floor(Math.random() * filtered.length);
+			selection.push(filtered[index]);
+			app.removeItem(filtered,filtered[index]);
 		}
 		return selection;
 	},
@@ -103,10 +111,10 @@ var app = {
 			output += ' data-solution="';
 			if(showAs == 'division'){
 				output += item.left + '">';
-				output += item.solution + ' : ' + item.right + ' = ' + '<span style="display:none;" class="solution">' + item.left + '</span>';
+				output += item.solution + ' : ' + item.left + ' = ' + '<span style="display:none;" class="solution">' + item.left + '</span>';
 			}else{
 				output += item.solution + '">';
-				output += item.left + ' x ' + item.right + ' = ' + '<span style="display:none;" class="solution">' + item.solution + '</span>';
+				output += item.right + ' x ' + item.left + ' = ' + '<span style="display:none;" class="solution">' + item.solution + '</span>';
 			}
 			output += '</div>';
 
@@ -118,6 +126,38 @@ var app = {
 		}
 
 		$(output).appendTo(this.container);
+	},
+	timetrial : function(selection){
+		$('#settingsform').hide();
+		$('header').hide();
+		$('#clockpanel').show();
+
+		//Set all clock buttons
+		$('#stopclock').click(function(e){
+			$('#settingsform').show();
+			$('header').show();
+			$('#clockpanel').hide();
+			$('#pauseclock').hide();
+			$('#restartclock').hide();
+
+			app.timetrial = false;
+		});
+
+		$('#startclock').click(function(e){
+			$('#pauseclock').show();
+			$('#startclock').hide();
+			$('#stopclock').hide();
+
+			app.timetrial = true;
+		});
+
+		$('#pauseclock').click(function(e){
+			$('#startclock').show();
+			$('#pauseclock').hide();
+			$('#stopclock').show();
+
+			app.timetrial = false;
+		});
 	},
 	shouldBeBetweenOneAndTen : function(value,defaultValue){
 		if(isNaN(value) || value < 0 || value > 10){
