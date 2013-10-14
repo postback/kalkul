@@ -111,7 +111,7 @@ var app = {
 			output += ' data-solution="';
 			if(showAs == 'division'){
 				output += item.left + '">';
-				output += item.solution + ' : ' + item.left + ' = ' + '<span style="display:none;" class="solution">' + item.left + '</span>';
+				output += item.solution + ' : ' + item.left + ' = ' + '<span style="display:none;" class="solution">' + item.right + '</span>';
 			}else{
 				output += item.solution + '">';
 				output += item.right + ' x ' + item.left + ' = ' + '<span style="display:none;" class="solution">' + item.solution + '</span>';
