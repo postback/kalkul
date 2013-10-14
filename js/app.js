@@ -65,15 +65,17 @@ var app = {
 	generate : function(){
 		var filtered = [];
 
-		console.log($('#tableofall').selected());
-
-		if(!$('#tableofall').selected()){
+		if($('#tableofall:checked').length <= 0){
 			var tableof = $('#tableof').val();
 			for (var i = this.table.length-1; i >= 0; i--) {
 				var left = this.table[i].left.toString();
 				if($.inArray(left,tableof) > -1){
 					filtered.push(this.table[i]);
 				}
+			}
+		}else{
+			for (var i = this.table.length-1; i >= 0; i--) {
+				filtered.push(this.table[i]);
 			}
 		}
 

@@ -36,34 +36,43 @@
                   <label>
                     <input type="checkbox" id="multiplication"> Multiplications (x)
                   </label>
-                </div>
+                </div><!-- .checkbox -->
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" id="division"> Divisions (:)
                   </label>
-                </div>
-              </div>
-            </div>
+                </div><!-- .checkbox -->
+              </div><!-- .offset-4 col-lg-8 -->
+            </div><!-- .form-group -->
           </div><!-- .col-lg-6 -->
           <div class="col-lg-6 form form-horizontal">
             <div class="form-group">
               <label for="columns" class="col-lg-4 control-label">Table of</label>
-              <div class="col-lg-8">
-                <select id="tableof" class="form-control" multiple="multiple">
-                  <option value="0">All</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                </select>
-              </div>
-            </div>
+                <div class="col-lg-8">
+                  <div class="radio">
+                    <label>
+                      <input type="radio" id="tableofall" name="tableoftype" checked="checked"> All
+                    </label>
+                  </div><!-- .radio -->
+                  <div class="radio">
+                    <label>
+                      <input type="radio" id="tableofselection" name="tableoftype"> Selection
+                    </label>
+                    <select id="tableof" class="form-control" multiple="multiple">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+                  </div><!-- .radio -->
+                </div><!-- .col-lg-8 -->
+            </div><!-- .form-group -->
           </div><!-- .col-lg-6 -->
         </div><!-- .row Generic settings -->
         <hr/>
