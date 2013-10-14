@@ -21,7 +21,7 @@ var app = {
 			$('#upto').val(app.upto);
 
 			var selection = app.generate();
-			app.render(selection);
+			app.renderAll(selection);
 		});
 
 		$('#print').click(function(){
@@ -86,7 +86,39 @@ var app = {
 		}
 		return selection;
 	},
-	render : function(selection){		
+	renderAll : function(selection){
+		var output = '';
+		var showAs = (app.getSelectedTypes() == 'division' ? 'division' : 'multiplication');
+
+		for(var i in selection){
+			var item = selection[i];
+			output += app.renderOneExercise(item);
+		}
+
+		$(output).appendTo(this.container);
+	},
+	renderOneExercise : function(exercise){
+		output = '<div';
+		output += ' class="col-md-' + (12/app.columns) + '"';
+		output += ' data-solution="';
+		if(showAs == 'division'){
+			output += item.left + '">';
+			output += item.solution + ' : ' + item.left + ' = ' + '<span style="display:none;" class="solution">' + item.right + '</span>';
+		}else{
+			output += item.solution + '">';
+			output += item.right + ' x ' + item.left + ' = ' + '<span style="display:none;" class="solution">' + item.solution + '</span>';
+		}
+		output += '</div>';
+
+		if(getSelectedTypes() == 'both' && showAs == 'multiplication'){
+			  = 'division';
+		}else if(getSelectedTypes() == 'both' && showAs == 'division'){
+			showAs = 'multiplication';
+		}
+
+		return output;
+	},
+	getSelectedTypes : function(){
 		//Suboptimal, needs better solution for mixing methods
 		var selectedTypes = '';
 		if($('#division').is(':checked')){
@@ -101,31 +133,7 @@ var app = {
 			}
 		}
 
-		var output = '';
-		var showAs = (selectedTypes == 'division' ? 'division' : 'multiplication');
-
-		for(var i in selection){
-			var item = selection[i];
-			output += '<div';
-			output += ' class="col-md-' + (12/app.columns) + '"';
-			output += ' data-solution="';
-			if(showAs == 'division'){
-				output += item.left + '">';
-				output += item.solution + ' : ' + item.left + ' = ' + '<span style="display:none;" class="solution">' + item.right + '</span>';
-			}else{
-				output += item.solution + '">';
-				output += item.right + ' x ' + item.left + ' = ' + '<span style="display:none;" class="solution">' + item.solution + '</span>';
-			}
-			output += '</div>';
-
-			if(selectedTypes == 'both' && showAs == 'multiplication'){
-				showAs = 'division';
-			}else if(selectedTypes == 'both' && showAs == 'division'){
-				showAs = 'multiplication';
-			}
-		}
-
-		$(output).appendTo(this.container);
+		return selectedTypes;
 	},
 	timetrial : function(selection){
 		$('#settingsform').hide();
