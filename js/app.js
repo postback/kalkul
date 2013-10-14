@@ -64,9 +64,11 @@ var app = {
 	},
 	generate : function(){
 		var filtered = [];
-		var tableof = $('#tableof').val();
 
-		if($('#tableof').val() != 0){
+		console.log($('#tableofall').selected());
+
+		if(!$('#tableofall').selected()){
+			var tableof = $('#tableof').val();
 			for (var i = this.table.length-1; i >= 0; i--) {
 				var left = this.table[i].left.toString();
 				if($.inArray(left,tableof) > -1){
@@ -88,7 +90,7 @@ var app = {
 	},
 	renderAll : function(selection){
 		var output = '';
-		var showAs = (app.getSelectedTypes() == 'division' ? 'division' : 'multiplication');
+		app.showAs = (app.getSelectedTypes() == 'division' ? 'division' : 'multiplication');
 
 		for(var i in selection){
 			var item = selection[i];
@@ -98,22 +100,22 @@ var app = {
 		$(output).appendTo(this.container);
 	},
 	renderOneExercise : function(exercise){
-		output = '<div';
+		var output = '<div';
 		output += ' class="col-md-' + (12/app.columns) + '"';
 		output += ' data-solution="';
-		if(showAs == 'division'){
-			output += item.left + '">';
-			output += item.solution + ' : ' + item.left + ' = ' + '<span style="display:none;" class="solution">' + item.right + '</span>';
+		if(app.showAs == 'division'){
+			output += exercise.left + '">';
+			output += exercise.solution + ' : ' + exercise.left + ' = ' + '<span style="display:none;" class="solution">' + exercise.right + '</span>';
 		}else{
-			output += item.solution + '">';
-			output += item.right + ' x ' + item.left + ' = ' + '<span style="display:none;" class="solution">' + item.solution + '</span>';
+			output += exercise.solution + '">';
+			output += exercise.right + ' x ' + exercise.left + ' = ' + '<span style="display:none;" class="solution">' + exercise.solution + '</span>';
 		}
 		output += '</div>';
 
-		if(getSelectedTypes() == 'both' && showAs == 'multiplication'){
-			  = 'division';
-		}else if(getSelectedTypes() == 'both' && showAs == 'division'){
-			showAs = 'multiplication';
+		if(app.getSelectedTypes() == 'both' && app.showAs == 'multiplication'){
+			 app.showAs = 'division';
+		}else if(app.getSelectedTypes() == 'both' && app.showAs == 'division'){
+			app.showAs = 'multiplication';
 		}
 
 		return output;
