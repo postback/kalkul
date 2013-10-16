@@ -77,7 +77,17 @@ var app = {
 		})
 
 		$('#tableofall').click(function(e){
+			if($(this).is(':checked')){
+				$('#tableof option').removeAttr('selected');
+			}
+		});
 
+		$('#tableof').click(function(e){
+			console.log($(this).find('option:selected').length)
+			if($(this).find('option:selected')){
+				$('#tableofselection').prop('checked',true);
+				$('#tableofall').prop('checked',false);
+			}
 		});
 	},
 	prepare : function(){
@@ -239,18 +249,20 @@ var app = {
 		app.timetrialIndex++;
 
 		output = app.renderOneExercise(item);
-
 		$('#exercise').html(output);
 
 		if(app.timetrialShowSolutions){
+			//Show the solution
 			app.timeout = setTimeout(function(){app.showSolution()},$('#seconds').val() * 1000);
 		}else{
+			//Show next exercise after the pre-defined time
 			app.timeout = setTimeout(function(){app.showNextTimetrialExercise()},$('#seconds').val() * 1000);
 		}
 	},
 	showSolution : function(){
 		$('#exercise .solution').show();
 
+		//Show the next exercise
 		app.timeout = setTimeout(function(){app.showNextTimetrialExercise()},($('#seconds').val()/2) * 1000);
 	}
 }
