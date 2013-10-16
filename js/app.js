@@ -8,6 +8,7 @@ var app = {
 	upto : 10,
 	timetrialIsRunning : false,
 	timetrialIndex : 0,
+	timetrialShowSolutions : false,
 	init : function(){
 		this.prepare();
 
@@ -42,8 +43,7 @@ var app = {
 		});
 
 		$('#start').click(function(e){
-			app.selection = app.generate();
-			app.timetrial();
+			app.setupTimetrial();
 		});
 
 		$('#closetimetrial').click(function(e){
@@ -75,6 +75,10 @@ var app = {
 		$('#restartclock').click(function(e){
 			app.startClock();
 		})
+
+		$('#tableofall').click(function(e){
+
+		});
 	},
 	prepare : function(){
 		var left = 1;
@@ -178,13 +182,16 @@ var app = {
 
 		return selectedTypes;
 	},
-	timetrial : function(){
+	setupTimetrial : function(){
+		app.selection = app.generate();
+		$('#exercise').html('');
 		this.container.html('');
 		$('#settingsform').hide();
 		$('header').hide();
 		$('#clockpanel').show();
 	},
 	startClock : function(){
+		app.timetrialShowSolutions = $('#showsolution').is(':checked');
 		app.timetrialIsRunning = true;
 		app.timetrialIndex = 0;
 		app.showNextTimetrialExercise();
@@ -235,7 +242,16 @@ var app = {
 
 		$('#exercise').html(output);
 
-		app.timeout = setTimeout(function(){app.showNextTimetrialExercise()},$('#seconds').val() * 1000);
+		if(app.timetrialShowSolutions){
+			app.timeout = setTimeout(function(){app.showSolution()},$('#seconds').val() * 1000);
+		}else{
+			app.timeout = setTimeout(function(){app.showNextTimetrialExercise()},$('#seconds').val() * 1000);
+		}
+	},
+	showSolution : function(){
+		$('#exercise .solution').show();
+
+		app.timeout = setTimeout(function(){app.showNextTimetrialExercise()},($('#seconds').val()/2) * 1000);
 	}
 }
 
