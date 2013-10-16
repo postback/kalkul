@@ -73,9 +73,7 @@ var app = {
 		});
 
 		$('#restartclock').click(function(e){
-			app.timetrialIsRunning = true;
-			app.timetrialIndex = 0;
-			app.showNextTimetrialExercise();
+			app.startClock();
 		})
 	},
 	prepare : function(){
