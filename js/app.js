@@ -2,10 +2,12 @@
 var app = {
 	count : 30,//The number of exercises generated, default
 	table : [],
+	selection : [],
 	container : null,
 	columns : 3,
 	upto : 10,
 	timetrialIsRunning : false,
+	timetrialIndex : 0,
 	init : function(){
 		this.prepare();
 
@@ -20,8 +22,8 @@ var app = {
 			app.upto = app.shouldBeBetweenOneAndTen($('#upto').val(),10);
 			$('#upto').val(app.upto);
 
-			var selection = app.generate();
-			app.renderAll(selection);
+			app.selection = app.generate();
+			app.renderAll();
 		});
 
 		$('#print').click(function(){
@@ -40,8 +42,8 @@ var app = {
 		});
 
 		$('#start').click(function(e){
-			var selection = app.generate();
-			app.timetrial(selection);
+			app.selection = app.generate();
+			app.timetrial();
 		});
 	},
 	prepare : function(){
@@ -79,23 +81,23 @@ var app = {
 			}
 		}
 
-		var selection = [];
+		var result = [];
 		for (var i = 0, index; i < app.count; ++i) {
 			if(filtered.length <= 0){
 				break;//No more candidates left
 			}
 			index = Math.floor(Math.random() * filtered.length);
-			selection.push(filtered[index]);
+			result.push(filtered[index]);
 			app.removeItem(filtered,filtered[index]);
 		}
-		return selection;
+		return result;
 	},
-	renderAll : function(selection){
+	renderAll : function(){
 		var output = '';
 		app.showAs = (app.getSelectedTypes() == 'division' ? 'division' : 'multiplication');
 
-		for(var i in selection){
-			var item = selection[i];
+		for(var i in app.selection){
+			var item = app.selection[i];
 			output += app.renderOneExercise(item);
 		}
 
@@ -139,7 +141,10 @@ var app = {
 
 		return selectedTypes;
 	},
-	timetrial : function(selection){
+	timetrial : function(){
+
+		app.timetrialIndex = 0;
+
 		$('#settingsform').hide();
 		$('header').hide();
 		$('#clockpanel').show();
@@ -174,7 +179,7 @@ var app = {
 	startClock : function(){
 		app.timetrialIsRunning = true;
 
-		showNextExercise();
+		app.showNextTimetrialExercise();
 	},
 	closeTimetrial : function(){
 		app.timetrialIsRunning = false;
@@ -195,6 +200,14 @@ var app = {
 				break;
 			}
 		}
+	},
+	showNextTimetrialExercise : function(){
+		var item = app.selection[app.timetrialIndex];
+		app.timetrialIndex++;
+
+		output = app.renderOneExercise(item);
+
+		$('#exercise').html(output);
 	}
 }
 
