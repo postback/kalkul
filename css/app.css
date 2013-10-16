@@ -6,6 +6,7 @@ body { padding-top: 70px; }
 
 #exercise{
 	font-size: 200px;
+	height: 400px;
 }
 
 @media print{

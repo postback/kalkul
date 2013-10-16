@@ -112,8 +112,6 @@ var app = {
 			columnWidth = (12/app.columns)
 		}
 
-		console.log(columnWidth)
-
 		output += ' class="col-md-' + columnWidth.toString() + '"';
 		output += ' data-solution="';
 		if(app.showAs == 'division'){
@@ -185,6 +183,10 @@ var app = {
 
 			app.pauseClock();
 		});
+
+		$('#restartclock').click(function(e){
+			app.timetrial();
+		})
 	},
 	startClock : function(){
 		app.timetrialIsRunning = true;
@@ -197,7 +199,16 @@ var app = {
 	pauseClock : function(){
 		app.timetrialIsRunning = false;
 
-		app.clearTimeout(app.timeout);
+		clearTimeout(app.timeout);
+	},
+	stopClock : function(){
+		app.timetrialIsRunning = false;
+
+		clearTimeout(app.timeout);
+
+		$('#pauseclock').hide();
+		$('#closetimetrial').show();
+		$('#restartclock').show();
 	},
 	shouldBeBetweenOneAndTen : function(value,defaultValue){
 		if(isNaN(value) || value < 0 || value > 10){
@@ -214,6 +225,13 @@ var app = {
 		}
 	},
 	showNextTimetrialExercise : function(){
+		//end of series
+		if(app.timetrialIndex == app.selection.length){
+			$('#exercise').html('');
+			app.stopClock();
+			return;
+		}
+
 		var item = app.selection[app.timetrialIndex];
 		app.timetrialIndex++;
 
