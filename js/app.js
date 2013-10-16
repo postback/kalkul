@@ -167,11 +167,7 @@ var app = {
 		}
 		output += '</div>';
 
-		if(app.getSelectedTypes() == 'both' && app.showAs == 'multiplication'){
-			 app.showAs = 'division';
-		}else if(app.getSelectedTypes() == 'both' && app.showAs == 'division'){
-			app.showAs = 'multiplication';
-		}
+		app.swapDivisionAndMultiplication();
 
 		return output;
 	},
@@ -192,6 +188,13 @@ var app = {
 
 		return selectedTypes;
 	},
+	swapDivisionAndMultiplication : function(){
+		if(app.getSelectedTypes() == 'both' && app.showAs == 'multiplication'){
+			 app.showAs = 'division';
+		}else if(app.getSelectedTypes() == 'both' && app.showAs == 'division'){
+			app.showAs = 'multiplication';
+		}
+	},
 	setupTimetrial : function(){
 		app.selection = app.generate();
 		$('#exercise').html('');
@@ -204,6 +207,8 @@ var app = {
 		$('#closetimetrial').show();
 		$('#restartclock').hide();
 		$('#startclock').show();
+
+		app.showAs = (app.getSelectedTypes() == 'division' ? 'division' : 'multiplication');
 	},
 	startClock : function(){
 		app.timetrialShowSolutions = $('#showsolution').is(':checked');
@@ -263,6 +268,8 @@ var app = {
 			//Show next exercise after the pre-defined time
 			app.timeout = setTimeout(function(){app.showNextTimetrialExercise()},$('#seconds').val() * 1000);
 		}
+
+		app.swapDivisionAndMultiplication();
 	},
 	showSolution : function(){
 		$('#exercise .solution').show();
