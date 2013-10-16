@@ -73,7 +73,7 @@ var app = {
 		});
 
 		$('#restartclock').click(function(e){
-			app.startClock();
+			app.setupTimetrial();
 		})
 
 		$('#tableofall').click(function(e){
@@ -199,6 +199,11 @@ var app = {
 		$('#settingsform').hide();
 		$('header').hide();
 		$('#clockpanel').show();
+
+		$('#pauseclock').hide();
+		$('#closetimetrial').show();
+		$('#restartclock').hide();
+		$('#startclock').show();
 	},
 	startClock : function(){
 		app.timetrialShowSolutions = $('#showsolution').is(':checked');
