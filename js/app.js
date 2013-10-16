@@ -83,7 +83,6 @@ var app = {
 		});
 
 		$('#tableof').click(function(e){
-			console.log($(this).find('option:selected').length)
 			if($(this).find('option:selected')){
 				$('#tableofselection').prop('checked',true);
 				$('#tableofall').prop('checked',false);
@@ -167,7 +166,11 @@ var app = {
 		}
 		output += '</div>';
 
-		app.swapDivisionAndMultiplication();
+		if(app.getSelectedTypes() == 'both' && app.showAs == 'multiplication'){
+			 app.showAs = 'division';
+		}else if(app.getSelectedTypes() == 'both' && app.showAs == 'division'){
+			app.showAs = 'multiplication';
+		}
 
 		return output;
 	},
@@ -187,13 +190,6 @@ var app = {
 		}
 
 		return selectedTypes;
-	},
-	swapDivisionAndMultiplication : function(){
-		if(app.getSelectedTypes() == 'both' && app.showAs == 'multiplication'){
-			 app.showAs = 'division';
-		}else if(app.getSelectedTypes() == 'both' && app.showAs == 'division'){
-			app.showAs = 'multiplication';
-		}
 	},
 	setupTimetrial : function(){
 		app.selection = app.generate();
@@ -268,8 +264,6 @@ var app = {
 			//Show next exercise after the pre-defined time
 			app.timeout = setTimeout(function(){app.showNextTimetrialExercise()},$('#seconds').val() * 1000);
 		}
-
-		app.swapDivisionAndMultiplication();
 	},
 	showSolution : function(){
 		$('#exercise .solution').show();
