@@ -45,6 +45,40 @@ var app = {
 			app.selection = app.generate();
 			app.timetrial();
 		});
+
+		$('#closetimetrial').click(function(e){
+			$('#settingsform').show();
+			$('header').show();
+			$('#clockpanel').hide();
+			$('#pauseclock').hide();
+			$('#restartclock').hide();
+
+			app.closeTimetrial();
+		});
+
+		$('#startclock').click(function(e){
+			$('#pauseclock').show();
+			$('#startclock').hide();
+			$('#closetimetrial').hide();
+
+			app.startClock();
+		});
+
+		$('#pauseclock').click(function(e){
+			$('#closetimetrial').show();
+			$('#pauseclock').hide();
+			$('#startclock').show();
+
+			app.pauseClock();
+		});
+
+		$('#restartclock').click(function(e){
+			console.log('restartclock');
+			app.selection = app.generate();
+			app.timetrial();
+
+			app.showNextTimetrialExercise();
+		})
 	},
 	prepare : function(){
 		var left = 1;
@@ -149,44 +183,12 @@ var app = {
 		return selectedTypes;
 	},
 	timetrial : function(){
-
 		this.container.html('');
 		app.timetrialIndex = 0;
 
 		$('#settingsform').hide();
 		$('header').hide();
 		$('#clockpanel').show();
-
-		//Set all clock buttons
-		$('#closetimetrial').click(function(e){
-			$('#settingsform').show();
-			$('header').show();
-			$('#clockpanel').hide();
-			$('#pauseclock').hide();
-			$('#restartclock').hide();
-
-			app.closeTimetrial();
-		});
-
-		$('#startclock').click(function(e){
-			$('#pauseclock').show();
-			$('#startclock').hide();
-			$('#closetimetrial').hide();
-
-			app.startClock();
-		});
-
-		$('#pauseclock').click(function(e){
-			$('#closetimetrial').show();
-			$('#pauseclock').hide();
-			$('#startclock').show();
-
-			app.pauseClock();
-		});
-
-		$('#restartclock').click(function(e){
-			app.timetrial();
-		})
 	},
 	startClock : function(){
 		app.timetrialIsRunning = true;
