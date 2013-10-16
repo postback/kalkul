@@ -73,10 +73,8 @@ var app = {
 		});
 
 		$('#restartclock').click(function(e){
-			console.log('restartclock');
-			app.selection = app.generate();
-			app.timetrial();
-
+			app.timetrialIsRunning = true;
+			app.timetrialIndex = 0;
 			app.showNextTimetrialExercise();
 		})
 	},
@@ -184,15 +182,13 @@ var app = {
 	},
 	timetrial : function(){
 		this.container.html('');
-		app.timetrialIndex = 0;
-
 		$('#settingsform').hide();
 		$('header').hide();
 		$('#clockpanel').show();
 	},
 	startClock : function(){
 		app.timetrialIsRunning = true;
-
+		app.timetrialIndex = 0;
 		app.showNextTimetrialExercise();
 	},
 	closeTimetrial : function(){
