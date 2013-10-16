@@ -1,9 +1,11 @@
 body { padding-top: 70px; }
 
-#container div{
-	width: 33%;
-	float: left;
-	padding: 10px 0;
+#clockpanel{
+	text-align: center;
+}
+
+#exercise{
+	font-size: 200px;
 }
 
 @media print{

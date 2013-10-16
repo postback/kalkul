@@ -105,7 +105,16 @@ var app = {
 	},
 	renderOneExercise : function(exercise){
 		var output = '<div';
-		output += ' class="col-md-' + (12/app.columns) + '"';
+
+		var columnWidth = 12;
+		if(!app.timetrialIsRunning){
+
+			columnWidth = (12/app.columns)
+		}
+
+		console.log(columnWidth)
+
+		output += ' class="col-md-' + columnWidth.toString() + '"';
 		output += ' data-solution="';
 		if(app.showAs == 'division'){
 			output += exercise.left + '">';
@@ -143,6 +152,7 @@ var app = {
 	},
 	timetrial : function(){
 
+		this.container.html('');
 		app.timetrialIndex = 0;
 
 		$('#settingsform').hide();
