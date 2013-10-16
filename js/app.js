@@ -196,6 +196,8 @@ var app = {
 	},
 	pauseClock : function(){
 		app.timetrialIsRunning = false;
+
+		app.clearTimeout(app.timeout);
 	},
 	shouldBeBetweenOneAndTen : function(value,defaultValue){
 		if(isNaN(value) || value < 0 || value > 10){
@@ -218,6 +220,8 @@ var app = {
 		output = app.renderOneExercise(item);
 
 		$('#exercise').html(output);
+
+		app.timeout = setTimeout(function(){app.showNextTimetrialExercise()},$('#seconds').val() * 1000);
 	}
 }
 
