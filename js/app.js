@@ -5,7 +5,7 @@ var app = {
 	container : null,
 	columns : 3,
 	upto : 10,
-	timetrial : false,
+	timetrialIsRunning : false,
 	init : function(){
 		this.prepare();
 
@@ -145,31 +145,42 @@ var app = {
 		$('#clockpanel').show();
 
 		//Set all clock buttons
-		$('#stopclock').click(function(e){
+		$('#closetimetrial').click(function(e){
 			$('#settingsform').show();
 			$('header').show();
 			$('#clockpanel').hide();
 			$('#pauseclock').hide();
 			$('#restartclock').hide();
 
-			app.timetrial = false;
+			app.closeTimetrial();
 		});
 
 		$('#startclock').click(function(e){
 			$('#pauseclock').show();
 			$('#startclock').hide();
-			$('#stopclock').hide();
+			$('#closetimetrial').hide();
 
-			app.timetrial = true;
+			app.startClock();
 		});
 
 		$('#pauseclock').click(function(e){
-			$('#startclock').show();
+			$('#closetimetrial').show();
 			$('#pauseclock').hide();
-			$('#stopclock').show();
+			$('#startclock').show();
 
-			app.timetrial = false;
+			app.pauseClock();
 		});
+	},
+	startClock : function(){
+		app.timetrialIsRunning = true;
+
+		showNextExercise();
+	},
+	closeTimetrial : function(){
+		app.timetrialIsRunning = false;
+	},
+	pauseClock : function(){
+		app.timetrialIsRunning = false;
 	},
 	shouldBeBetweenOneAndTen : function(value,defaultValue){
 		if(isNaN(value) || value < 0 || value > 10){
