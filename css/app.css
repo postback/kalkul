@@ -15,7 +15,7 @@ body { padding-top: 70px; }
 }
 
 @media print{
-	.actions, dl, p, h1, .form, header, hr{
+	.actions, dl, p, h1, .form-horizontal, header, hr{
 		display: none;
 	}
 
@@ -52,5 +52,16 @@ body { padding-top: 70px; }
 @media screen and (max-width:900px){
 	#container div{
 		width: 50%;
+	}
+}
+
+@media screen and (max-width:1199px){
+	.form{
+		border-bottom: 1px solid #eee;
+		padding-bottom: 12px;
+	}
+
+	hr{
+		margin: 6px 0;	
 	}
 }
