@@ -145,6 +145,10 @@ var app = {
 		}
 
 		$(output).appendTo(this.container);
+
+		$('html, body').animate({
+        scrollTop: this.container.offset().top
+    }, 1000);
 	},
 	renderOneExercise : function(exercise){
 		var output = '<div';
