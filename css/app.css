@@ -88,13 +88,13 @@ body { padding-top: 70px; }
 @media screen and (max-width: 600px) {
    #exercise {
 		font-size: 80px;
-		height: 250px;
+		height: 200px;
 	}
 }
 
 @media screen and (max-width: 450px) {
    #exercise {
-		font-size: 60px;
+		font-size: 50px;
 		height: 220px;
 	}
 }
