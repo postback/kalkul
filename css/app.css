@@ -90,6 +90,14 @@ body { padding-top: 70px; }
 		font-size: 80px;
 		height: 200px;
 	}
+
+	/* Retina-specific stuff here */
+	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+    #exercise {
+			font-size: 50px;
+			height: 220px;
+		}
+	}
 }
 
 @media screen and (max-width: 450px) {
