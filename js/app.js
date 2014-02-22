@@ -13,6 +13,11 @@ var app = {
 		this.prepare();
 
 		$('#generate').click(function(){
+
+			if($('.tableof:checked').length == 0){
+				return;
+			}
+
 			app.count = $('#count').val();
 			app.container.empty();
 
@@ -46,6 +51,11 @@ var app = {
 		});
 
 		$('#start').click(function(e){
+
+			if($('.tableof:checked').length == 0){
+				return;
+			}
+
 			app.setupTimetrial();
 		});
 
@@ -80,16 +90,11 @@ var app = {
 		})
 
 		$('#tableofall').click(function(e){
-			if($(this).is(':checked')){
-				$('#tableof option').removeAttr('selected');
-			}
+			$('.tableof').prop('checked',true);
 		});
 
-		$('#tableof').click(function(e){
-			if($(this).find('option:selected')){
-				$('#tableofselection').prop('checked',true);
-				$('#tableofall').prop('checked',false);
-			}
+		$('#tableofnone').click(function(e){
+			$('.tableof').prop('checked',false);
 		});
 	},
 	prepare : function(){
@@ -111,10 +116,15 @@ var app = {
 		this.container = $('#container');
 	},
 	generate : function(){
-		var filtered = [];
 
-		if($('#tableofall:checked').length <= 0){
-			var tableof = $('#tableof').val();
+		var filtered = [];
+		if($('.tableof:checked').length < 10){
+
+			var tableof = [];
+      $('.tableof:checked').each(function(i){
+        tableof[i] = $(this).val();
+      });
+
 			for (var i = this.table.length-1; i >= 0; i--) {
 				var left = this.table[i].left.toString();
 				if($.inArray(left,tableof) > -1){

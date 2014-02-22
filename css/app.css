@@ -9,6 +9,14 @@ body { padding-top: 70px; }
 		text-align: center;
 	}
 
+  .checkboxes{
+    margin-left: 1px;
+  }
+
+  #tableofnone{
+    margin-left: 15px;
+  }
+
 @media (min-width: 768px) {
 	#exercise{
 		font-size: 200px;

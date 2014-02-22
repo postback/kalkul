@@ -27,28 +27,69 @@
             <div class="form-group">
               <label for="columns" class="col-lg-4 control-label">Table of</label>
                 <div class="col-lg-8">
-                  <div class="radio">
-                    <label>
-                      <input type="radio" id="tableofall" name="tableoftype" checked="checked"> All
-                    </label>
-                  </div><!-- .radio -->
-                  <div class="radio">
-                    <label>
-                      <input type="radio" id="tableofselection" name="tableoftype"> Selection
-                    </label>
-                    <select id="tableof" class="form-control" multiple="multiple">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
-                  </div><!-- .radio -->
+                  <div class="row checkboxes">
+                    <div class="checkbox col-xs-2">
+                      <label>
+                          <input type="checkbox" class="tableof" id="tableof1" name="tableof" value="1" > 1
+                        </label>
+                    </div>
+                    <div class="checkbox col-xs-2">
+                      <label>
+                          <input type="checkbox" class="tableof" id="tableof2" name="tableof" value="2" > 2
+                        </label>
+                    </div>
+                    <div class="checkbox col-xs-2">
+                      <label>
+                          <input type="checkbox" class="tableof" id="tableof3" name="tableof" value="3" > 3
+                        </label>
+                    </div>
+                    <div class="checkbox col-xs-2">
+                      <label>
+                          <input type="checkbox" class="tableof" id="tableof4" name="tableof" value="4" > 4
+                        </label>
+                    </div>
+                    <div class="checkbox col-xs-2">
+                      <label>
+                          <input type="checkbox" class="tableof" id="tableof5" name="tableof" value="5" > 5
+                        </label>
+                    </div>
+                  </div><!-- .row (of checkboxes) -->
+                  
+
+                  <div class="row checkboxes">
+                    <div class="checkbox col-xs-2">
+                      <label>
+                          <input type="checkbox" class="tableof" id="tableof6" name="tableof" value="6" > 6
+                        </label>
+                    </div>
+                    <div class="checkbox col-xs-2">
+                      <label>
+                          <input type="checkbox" class="tableof" id="tableof7" name="tableof" value="7" > 7
+                        </label>
+                    </div>
+                    <div class="checkbox col-xs-2">
+                      <label>
+                          <input type="checkbox" class="tableof" id="tableof8" name="tableof" value="8" > 8
+                        </label>
+                    </div>
+                    <div class="checkbox col-xs-2">
+                      <label>
+                          <input type="checkbox" class="tableof" id="tableof9" name="tableof" value="9" > 9
+                        </label>
+                    </div>
+                    <div class="checkbox col-xs-2">
+                      <label>
+                          <input type="checkbox" class="tableof" id="tableof10" name="tableof" value="10" > 10
+                        </label>
+                    </div>
+                  </div><!-- .row (of checkboxes) -->
+
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <a href="#" class="tableof" id="tableofall">Select all</a><a href="#" class="tableof" id="tableofnone">Deselect all</a>
+                    </div>
+                  </div>
+
                 </div><!-- .col-lg-8 -->
             </div><!-- .form-group -->
           </div><!-- .col-lg-6 -->
