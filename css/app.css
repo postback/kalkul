@@ -17,6 +17,12 @@ body { padding-top: 70px; }
     margin-left: 15px;
   }
 
+  #footer{
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+  }
+
 @media (min-width: 768px) {
 	#exercise{
 		font-size: 200px;
@@ -25,7 +31,7 @@ body { padding-top: 70px; }
 }
 
 @media print{
-	.actions, dl, p, h1, .form-horizontal, header, hr, #print-toolbar, .navbar-header{
+	.actions, dl, p, h1, .form-horizontal, header, hr, #print-toolbar, .navbar-header, #footer{
 		display: none;
 	}
 

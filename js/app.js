@@ -62,6 +62,7 @@ var app = {
 		$('#closetimetrial').click(function(e){
 			$('#settingsform').show();
 			$('header').show();
+			$('#footer').show();
 			$('#clockpanel').hide();
 			$('#pauseclock').hide();
 			$('#restartclock').hide();
@@ -222,6 +223,7 @@ var app = {
 		$('#print-toolbar').hide();
 		this.container.html('');
 		$('#settingsform').hide();
+		$('#footer').hide();
 		$('header').hide();
 		$('#clockpanel').show();
 
