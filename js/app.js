@@ -80,9 +80,17 @@ var app = {
 		$('#pauseclock').click(function(e){
 			$('#closetimetrial').show();
 			$('#pauseclock').hide();
-			$('#startclock').show();
+			$('#continueclock').show();
 
 			app.pauseClock();
+		});
+
+		$('#continueclock').click(function(e){
+			$('#pauseclock').show();
+			$('#continueclock').hide();
+			$('#closetimetrial').hide();
+
+			app.continueClock();
 		});
 
 		$('#restartclock').click(function(e){
@@ -221,6 +229,7 @@ var app = {
 		$('#closetimetrial').show();
 		$('#restartclock').hide();
 		$('#startclock').show();
+		$('#continueclock').hide();
 
 		app.showAs = (app.getSelectedTypes() == 'division' ? 'division' : 'multiplication');
 	},
@@ -237,6 +246,16 @@ var app = {
 		app.timetrialIsRunning = false;
 
 		clearTimeout(app.timeout);
+	},
+	continueClock : function(){
+		app.timetrialIsRunning = true;
+		app.timetrialIndex = 0;
+
+		if(app.timetrialShowSolutions){
+			app.showSolution();
+		}else{
+			app.showNextTimetrialExercise();
+		}
 	},
 	stopClock : function(){
 		app.timetrialIsRunning = false;
