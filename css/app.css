@@ -25,7 +25,7 @@ body { padding-top: 70px; }
 }
 
 @media print{
-	.actions, dl, p, h1, .form-horizontal, header, hr, #print-toolbar{
+	.actions, dl, p, h1, .form-horizontal, header, hr, #print-toolbar, .navbar-header{
 		display: none;
 	}
 
