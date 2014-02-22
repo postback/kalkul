@@ -15,6 +15,9 @@ var app = {
 		$('#generate').click(function(){
 			app.count = $('#count').val();
 			app.container.empty();
+
+			//Toolbar
+			$('#print-toolbar').show();
 			
 			//Columns
 			app.columns = app.shouldBeBetweenOneAndTen($('#columns').val(),3);
@@ -198,6 +201,7 @@ var app = {
 	setupTimetrial : function(){
 		app.selection = app.generate();
 		$('#exercise').html('');
+		$('#print-toolbar').hide();
 		this.container.html('');
 		$('#settingsform').hide();
 		$('header').hide();

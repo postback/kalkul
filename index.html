@@ -73,7 +73,7 @@
         <hr/>
         <div class="row">
           <div class="col-lg-6 form form-horizontal">
-            <h3 class="col-lg-offset-4">Printable</h3>
+            <h3 class="col-lg-offset-4">A. Printable</h3>
             <div class="form-group">
               <label for="count" class="col-lg-4 control-label">Number of exercises</label>
               <div class="col-lg-8">
@@ -94,14 +94,12 @@
             </div>
             <div class="form-group">
               <div class="col-lg-offset-4 col-lg-8">
-                <button id="generate" class="btn btn-primary">Generate</button>
-                <button id="print" class="btn">Print</button>
-                <button id="solutions" class="btn">Show solutions</button>
+                <button id="generate" class="btn btn-primary">Generate exercises</button>
               </div>
             </div>
           </div><!-- .col-lg-6 printable -->
           <div class="col-lg-6 form form-horizontal">
-            <h3 class="col-lg-offset-4">Time trial</h3>
+            <h3 class="col-lg-offset-4">B. Time trial</h3>
             <div class="form-group">
               <label for="seconds" class="col-lg-4 control-label">Seconds between exercises</label>
               <div class="col-lg-8">
@@ -119,13 +117,22 @@
             </div>
             <div class="form-group">
               <div class="col-lg-offset-4 col-lg-8">
-                <button id="start" class="btn btn-primary">Start</button>
+                <button id="start" class="btn btn-primary">Start time trial</button>
               </div>
             </div>
           </div><!-- .col-lg-6 time trial -->
         </div>
         
-        <div id="container">
+        <div id="print-toolbar" style="display:none" class="col-lg-offset-2">
+          <div class="row">
+            <div class="col-lg-12">
+              <button id="print" class="btn">Print</button>
+              <button id="solutions" class="btn">Toggle solutions</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="container" class="col-lg-offset-2">
           <!-- Results will be printed here -->
         </div>
 
